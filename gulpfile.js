@@ -7,8 +7,9 @@ gulp.task('serve', function () {
     browserSync.init({
         server: "."
     });
-    gulp.watch("dev/*.html").on('change', browserSync.reload);
-    gulp.watch("dev/css/*.css").on('change', browserSync.reload);
+    gulp.watch("*.html").on('change', browserSync.reload);
+    gulp.watch("css/*.css").on('change', browserSync.reload);
+    gulp.watch("js/*.js").on('change', browserSync.reload);
 });
 
 
