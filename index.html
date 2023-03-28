@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us">
+<head>
+    <meta charset="utf-8" />
+
+    <title>LocalizR</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- JS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="js/nav.js" charset="utf-8"></script>
+    <script src="js/generator.js" charset="utf-8"></script>
+    <script src="js/file_saver.js" charset="utf-8"></script>
+</head>
+<body>
+    <div class="popup">
+        asd
+    </div>
+    <!---
+            NAV
+        ----------------------------------------------- -->
+    <nav id="nav">
+        <div class="logo">
+            <a href="#home">LocalizR</a>
+        </div>
+
+        <div class="menu">
+            <span id="home_menu" class="active"><a href="#home">Home</a></span>
+            <span id="about_menu"><a href="#about">About</a></span>
+            <span id="generator_menu"><a href="#generator">Generator</a></span>
+            <a id="toggle_menu" href="javascript:toggleMobileMenu()">
+                <svg viewBox="0 0 20 20">
+                    <path fill="currentColor" d="M1,4 H18 V6 H1 V4 M1,9 H18 V11 H1 V7 M3,14 H18 V16 H1 V14" />
+                </svg>
+            </a>
+        </div>
+    </nav>
+    <div id="nav_menu_mobile" class="popup">
+        <a href="javascript:navigateToSection('#home')">Home</a>
+        <a href="javascript:navigateToSection('#about')">About</a>
+        <a href="javascript:navigateToSection('#generator')">Generator</a>
+    </div>
+    <div class="container">
+
+
+        <!---
+            HERO
+        ----------------------------------------------- -->
+        <section class="hero" id="home">
+            <h1>Generate<br />strong-typed translations<br />from json</h1>
+            <a class="button" href="#about">Find out more</a>
+        </section>
+        <!---
+            ABOUT
+        ----------------------------------------------- -->
+        <section class="about" id="about">
+            <h1>About this tool</h1>
+            <p>
+                At its core, strong-typed internationalization is all about ensuring that your application can handle and display multiple languages and cultures with ease, while minimizing the risk of errors or inconsistencies. This is accomplished by using a set of defined data types and formats that are specific to each language or culture.
+            </p>
+            <p>
+                For example, in a strong-typed internationalization system, you might have separate data types for dates, times, and currency values in different languages. This ensures that these values are displayed correctly for each language, regardless of the user's location.
+            </p>
+            <p>
+                Additionally, a strong-typed internationalization system can help to minimize the risk of errors by catching issues early in the development process. By using strict data types and formats, developers can ensure that any code that relies on internationalization data is properly formatted and validated, reducing the likelihood of bugs or other issues.
+            </p>
+            <p>
+                Another key benefit of strong-typed internationalization is that it can make it easier to scale your application to support new languages and cultures as they are needed. By using a standardized set of data types and formats, you can more easily add new languages to your application without having to worry about rewriting or refactoring large portions of your codebase.
+            </p>
+            <p>
+                Of course, implementing a strong-typed internationalization system requires careful planning and attention to detail. It's important to choose the right data types and formats for each language or culture, and to ensure that your application is properly configured to handle internationalization data in a consistent and reliable way.
+            </p>
+            <p>
+                But with the right approach, a strong-typed internationalization system can be a powerful tool for creating robust and flexible software that can serve users all around the world.
+            </p>
+        </section>
+        <!---
+            GENERATOR
+        ----------------------------------------------- -->
+        <section class="generator" id="generator">
+            <h1>Generator</h1>
+            <p>Paste your json string specification below and press the "Generate code" button.</p>
+            <a href="javascript:generateCode();">Generate code</a>
+            <pre id="jsonSpec" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></pre>
+        </section>
+    </div>
+    <script>
+        document.getElementById('jsonSpec').textContent = JSON.stringify(defaultSpec, null, 2);
+        const worker = new Worker('js/generator.js');
+        worker.onmessage = function (msg) {
+            if (msg.data.jsonGen === undefined) {
+                return;
+            } else {
+                saveAs(msg.data.jsonGen.languages, "Language.cs");
+                saveAs(msg.data.jsonGen.descriptions, "LanguageInfo.cs");
+                saveAs(msg.data.jsonGen.translator, msg.data.jsonGen.translatorClassName + ".cs");
+            }
+            //console.log({ 'main window worker message': msg });
+        }
+        worker.onerror = function (err) {
+            alert(err.message);
+        }
+        function generateCode() {
+            var data = document.getElementById("jsonSpec").textContent;
+            worker.postMessage({ 'jsonSpec': data });
+        }
+    </script>
+</body>
+</html>

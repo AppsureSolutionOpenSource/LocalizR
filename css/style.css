@@ -1,0 +1,236 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background: #020305;
+    font-family: "Raleway", sans-serif;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.005);
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: unset;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+h1 {
+    font-size: 4em;
+    margin: 0;
+    font-weight: 500;
+    margin-bottom: 1em;
+}
+
+p {
+    font-size: 1.3em;
+    margin: 0;
+    font-weight: 500;
+    margin-bottom: 1.3em;
+}
+
+nav {
+    background-color: #020305;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 4em;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+
+    nav .logo {
+        align-items: center;
+        background: linear-gradient(45deg, #e20808, #FF0000);
+        transform: skew(-30deg);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        padding-left: 3em;
+        padding-right: 1.5em;
+        margin-left: -1.5em;
+    }
+
+    nav a {
+        font-family: "Raleway", sans-serif;
+        font-size: 1.3em;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    nav .logo a {
+        transform: skew(30deg);
+    }
+
+    nav .menu {
+        display: flex;
+        flex-direction: row;
+        column-gap: 3em;
+        justify-content: flex-end;
+        width: 100%;
+        height: 100%;
+        margin-right: 2em;
+    }
+
+        nav .menu svg {
+            color: red;
+            width: 2em;
+            height: 2em;
+            color: #FF0000;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+        }
+
+#toggle_menu {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+}
+
+
+nav .menu span.active a {
+    transform: skew(30deg);
+}
+
+nav .menu span {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
+
+    nav .menu span.active {
+        background: linear-gradient(45deg, #e20808, #FF0000);
+        transform: skew(-30deg);
+    }
+
+section {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 1em;
+    padding-top: 6em;
+}
+
+
+
+.hero {
+    background: linear-gradient( rgba(12, 12, 12, 0.7), rgba(12, 12, 12, 0.9) ), url(../img/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+    .hero h1 {
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+
+section a, section a:focus, section a:hover {
+    color: #020305;
+    background-color: transparent;
+    border-color: #ff0000;
+    font-size: 1.3em;
+    border-width: .1em;
+    border-style: solid;
+    height: auto;
+    padding: 0.4em;
+    padding-left: 2em;
+    padding-right: 2em;
+    text-decoration: none;
+    text-align: center;
+}
+
+.hero a, .hero a:focus, .hero a:hover {
+    color: #ffffff;
+}
+
+
+section pre[contenteditable] {
+    border: .2em solid #020305;
+    margin: 0;
+    padding: 1em;
+}
+
+.generator a, .generator a:focus, .generator a:hover {
+    margin-bottom: 1.3em;
+    border: .1em solid #020305;
+}
+
+@media (max-width: 650px) {
+    /* … */
+    nav .menu span {
+        display: none;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    nav .menu {
+        margin-right: 1em;
+    }
+}
+
+@media (min-width: 651px) {
+    #toggle_menu {
+        display: none;
+    }
+}
+
+
+.container {
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup {
+    z-index: 168;
+    position: fixed;
+    top: 4em;
+    left: 0;
+    width: 100%;
+    background: #020305;
+    box-sizing: border-box;
+    display: none;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1.6em;
+}
+
+    .popup a, .popup a:focus, .popup a:hover {
+        color: #ffffff;
+        background-color: transparent;
+        font-size: 1.3em;
+        height: auto;
+        text-decoration: none;
+        text-align: left;
+        padding-top: 1.3em;
+        padding-bottom: 1.3em;
+    }
+
+    .popup.visible {
+        display:flex;
+    }
+    
