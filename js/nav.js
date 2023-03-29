@@ -4,8 +4,9 @@
     module: "Com.Cool.Namespace",
     translatorClass: "LanguageManager",
     labels: {
-        Hello: { "En": "Hello", "Ro": "Salut" },
-        World: { "En": "World", "Ro": "Lume" }
+        Hello: { En: "Hello", Ro: "Salut" },
+        World: { En: "World", Ro: "Lume" },
+        Missing: { En: "Missing" }
     }
 };
 

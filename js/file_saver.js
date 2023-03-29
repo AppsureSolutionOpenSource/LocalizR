@@ -1,5 +1,5 @@
 function saveAs(aString, aFileName) {
-    var file = new Blob([aString], { type: "text/plain;charset=utf-8" });
+    var file = new Blob([aString], { type: "application/octet-stream;charset=utf-8" });
     if (window.navigator.msSaveOrOpenBlob) // IE10+
         window.navigator.msSaveOrOpenBlob(file, filename);
     else { // Others

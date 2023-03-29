@@ -23,7 +23,6 @@
     <!-- JS
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script src="js/nav.js" charset="utf-8"></script>
-    <script src="js/generator.js" charset="utf-8"></script>
     <script src="js/file_saver.js" charset="utf-8"></script>
 </head>
 <body>
@@ -94,12 +93,24 @@
         <section class="generator" id="generator">
             <h1>Generator</h1>
             <p>Paste your json string specification below and press the "Generate code" button.</p>
-            <a href="javascript:generateCode();">Generate code</a>
+            <a id="generateButton" href="javascript:generateCode();">Generate code</a>
             <pre id="jsonSpec" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></pre>
         </section>
     </div>
     <script>
         document.getElementById('jsonSpec').textContent = JSON.stringify(defaultSpec, null, 2);
+        function disableGenerateButton(disabled) {
+            if (disabled === true) {
+                document.getElementById('generateButton').href = 'javascript:void(0)';
+            } else {
+                document.getElementById('generateButton').href = 'javascript:generateCode();';
+            }
+        }
+        function generateCode() {
+            disableGenerateButton(true);
+            var data = document.getElementById("jsonSpec").textContent;
+            worker.postMessage({ 'jsonSpec': data });
+        }
         const worker = new Worker('js/generator.js');
         worker.onmessage = function (msg) {
             if (msg.data.jsonGen === undefined) {
@@ -108,16 +119,15 @@
                 saveAs(msg.data.jsonGen.languages, "Language.cs");
                 saveAs(msg.data.jsonGen.descriptions, "LanguageInfo.cs");
                 saveAs(msg.data.jsonGen.translator, msg.data.jsonGen.translatorClassName + ".cs");
+                disableGenerateButton(false);
             }
             //console.log({ 'main window worker message': msg });
         }
         worker.onerror = function (err) {
             alert(err.message);
         }
-        function generateCode() {
-            var data = document.getElementById("jsonSpec").textContent;
-            worker.postMessage({ 'jsonSpec': data });
-        }
+        
+        
     </script>
 </body>
 </html>
