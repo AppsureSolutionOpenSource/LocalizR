@@ -1,0 +1,3 @@
+[*.lang.json]
+command = powershell
+arguments = -Command "Write-Host {file}" 

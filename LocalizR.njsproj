@@ -32,6 +32,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="img\hero.jpg" />
+    <Content Include="img\hero.webp" />
     <Content Include="index.html">
       <SubType>Code</SubType>
     </Content>
@@ -46,11 +47,18 @@
     </Content>
     <Content Include="gulpfile.js" />
     <Content Include="package.json" />
+    <Content Include=".onsaveconfig" />
+    <Content Include="tmp\test.lang.json" />
+    <Content Include="tmp\wip.bat">
+      <SubType>Code</SubType>
+    </Content>
+    <None Include="tmp\test.lang.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="css\" />
     <Folder Include="img\" />
     <Folder Include="js\" />
+    <Folder Include="tmp\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

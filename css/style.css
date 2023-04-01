@@ -300,6 +300,17 @@ section a, section a:focus, section a:hover {
     color: #ffffff;
 }
 
+section pre {
+    border: .2em solid #020305;
+    margin: 0;
+    padding: 1em;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
 
 section pre[contenteditable] {
     border: .2em solid #020305;
@@ -368,3 +379,10 @@ section pre[contenteditable] {
     .popup.visible {
         display: flex;
     }
+
+a.inline-href, a.inline-href:focus, a.inline-href:hover {
+    border-style: none;
+    padding: 0;
+    font-size: 1em;
+    color: #FF0000;
+}

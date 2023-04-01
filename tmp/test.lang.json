@@ -1,0 +1,30 @@
+﻿{
+  "type": "languageSpecification",
+  "supportedLanguages": [
+    {
+      "shortDesc": "En",
+      "longDesc": "English",
+      "priority": 999
+    },
+    {
+      "shortDesc": "Ro",
+      "longDesc": "Română",
+      "priority": 35
+    }
+  ],
+  "module": "Com.Cool.Namespace",
+  "translatorClass": "LanguageManager",
+  "labels": {
+    "Hello": {
+      "En": "Hello",
+      "Ro": "Salut"
+    },
+    "World": {
+      "En": "World",
+      "Ro": "Lume"
+    },
+    "Missing": {
+      "En": "Missing"
+    }
+  }
+}
